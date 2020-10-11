@@ -45,6 +45,23 @@ public class InstructionParser {
 		parsers.put("addi", new AddiParser());
 		parsers.put("sub",  new SubParser());	
 		parsers.put("subi", new SubiParser());
+		
+		//mul, muli, div, and divi, rem, remi, and, andi, and shift
+		parsers.put("mul",  new MulParser());	
+		parsers.put("muli", new MuliParser());
+		
+		parsers.put("div",  new DivParser());	
+		parsers.put("divi", new DiviParser());
+		
+		parsers.put("rem",  new RemParser());	
+		parsers.put("remi", new RemiParser());
+		
+		parsers.put("and",  new AndParser());	
+		parsers.put("andi", new AndiParser());
+		
+		parsers.put("shift",  new ShiftParser());	
+		
+		
 		parsers.put("clac", new ClacParser());		
 		parsers.put("stor", new StorParser());
 		parsers.put("beqz", new BeqzParser());
@@ -158,6 +175,188 @@ public class InstructionParser {
 			return ("11" + branchAddress);
 		}
 	}
+	
+	
+	/**
+	 * class MulParser parses mul instructions.
+	 * 
+	 * mul instructions have the format "mul [label/address]:
+	 * Op code and ALUopt for mul is 22.
+	 */
+	static private class MulParser implements Parser {
+		public String parse(String s, HashMap<String, Label>  st, int lineNumber) 
+				throws AssemblerException {
+			// if first character is a letter, assume a label and convert s to address
+			if (Character.isLetter(s.charAt(0))) {
+				Label l = st.get(s);
+				if (l == null) 
+					throw new AssemblerException("label " + s 
+							+ " not found for mul - Line Number: " + lineNumber);
+				s = Integer.toString(l.getAddress());
+
+			}
+
+			String branchAddress = shortStringToHexString(s, lineNumber);
+			return ("22" + branchAddress);
+		}
+	}
+	
+	/**
+	 * class MuliParser parses muli instructions.
+	 * 
+	 * muli instructions have the format "muli value"
+	 * Op code and ALUopt for muli is 12.
+	 */
+	static private class MuliParser implements Parser {
+		public String parse(String s, HashMap<String, Label>  st, int lineNumber) 
+				throws AssemblerException {
+			String branchAddress = shortStringToHexString(s,lineNumber);
+			return ("12" + branchAddress);
+		}
+	}
+	
+	/**
+	 * class DivParser parses div instructions.
+	 * 
+	 * div instructions have the format "div [label/address]:
+	 * Op code and ALUopt for div is 23.
+	 */
+	static private class DivParser implements Parser {
+		public String parse(String s, HashMap<String, Label>  st, int lineNumber) 
+				throws AssemblerException {
+			// if first character is a letter, assume a label and convert s to address
+			if (Character.isLetter(s.charAt(0))) {
+				Label l = st.get(s);
+				if (l == null) 
+					throw new AssemblerException("label " + s 
+							+ " not found for div - Line Number: " + lineNumber);
+				s = Integer.toString(l.getAddress());
+
+			}
+
+			String branchAddress = shortStringToHexString(s, lineNumber);
+			return ("23" + branchAddress);
+		}
+	}
+	
+	/**
+	 * class DiviParser parses divi instructions.
+	 * 
+	 * divi instructions have the format "divi value"
+	 * Op code and ALUopt for divi is 13.
+	 */
+	static private class DiviParser implements Parser {
+		public String parse(String s, HashMap<String, Label>  st, int lineNumber) 
+				throws AssemblerException {
+			String branchAddress = shortStringToHexString(s,lineNumber);
+			return ("13" + branchAddress);
+		}
+	}
+
+	
+	
+	/**
+	 * class RemParser parses rem instructions.
+	 * 
+	 * rem instructions have the format "rem [label/address]:
+	 * Op code and ALUopt for rem is 24.
+	 */
+	static private class RemParser implements Parser {
+		public String parse(String s, HashMap<String, Label>  st, int lineNumber) 
+				throws AssemblerException {
+			// if first character is a letter, assume a label and convert s to address
+			if (Character.isLetter(s.charAt(0))) {
+				Label l = st.get(s);
+				if (l == null) 
+					throw new AssemblerException("label " + s 
+							+ " not found for rem - Line Number: " + lineNumber);
+				s = Integer.toString(l.getAddress());
+
+			}
+
+			String branchAddress = shortStringToHexString(s, lineNumber);
+			return ("24" + branchAddress);
+		}
+	}
+	
+	/**
+	 * class RemiParser parses remi instructions.
+	 * 
+	 * remi instructions have the format "remi value"
+	 * Op code and ALUopt for remi is 14.
+	 */
+	static private class RemiParser implements Parser {
+		public String parse(String s, HashMap<String, Label>  st, int lineNumber) 
+				throws AssemblerException {
+			String branchAddress = shortStringToHexString(s,lineNumber);
+			return ("14" + branchAddress);
+		}
+	}
+
+	
+	/**
+	 * class AndParser parses and instructions.
+	 * 
+	 * and instructions have the format "and [label/address]:
+	 * Op code and ALUopt for and is 25.
+	 */
+	static private class AndParser implements Parser {
+		public String parse(String s, HashMap<String, Label>  st, int lineNumber) 
+				throws AssemblerException {
+			// if first character is a letter, assume a label and convert s to address
+			if (Character.isLetter(s.charAt(0))) {
+				Label l = st.get(s);
+				if (l == null) 
+					throw new AssemblerException("label " + s 
+							+ " not found for and - Line Number: " + lineNumber);
+				s = Integer.toString(l.getAddress());
+
+			}
+
+			String branchAddress = shortStringToHexString(s, lineNumber);
+			return ("25" + branchAddress);
+		}
+	}
+	
+	/**
+	 * class AndiParser parses andi instructions.
+	 * 
+	 * andi instructions have the format "andi value"
+	 * Op code and ALUopt for andi is 15.
+	 */
+	static private class AndiParser implements Parser {
+		public String parse(String s, HashMap<String, Label>  st, int lineNumber) 
+				throws AssemblerException {
+			String branchAddress = shortStringToHexString(s,lineNumber);
+			return ("15" + branchAddress);
+		}
+	}
+	
+	
+	/**
+	 * class ShiftParser parses shift instructions.
+	 * 
+	 * shift instructions have the format "shift [label/address]:
+	 * Op code and ALUopt for shift is 26.
+	 */
+	static private class ShiftParser implements Parser {
+		public String parse(String s, HashMap<String, Label>  st, int lineNumber) 
+				throws AssemblerException {
+			// if first character is a letter, assume a label and convert s to address
+			if (Character.isLetter(s.charAt(0))) {
+				Label l = st.get(s);
+				if (l == null) 
+					throw new AssemblerException("label " + s 
+							+ " not found for shift - Line Number: " + lineNumber);
+				s = Integer.toString(l.getAddress());
+
+			}
+
+			String branchAddress = shortStringToHexString(s, lineNumber);
+			return ("26" + branchAddress);
+		}
+	}
+	
 
 	/**
 	 * class Clac parses clac instructions.
