@@ -65,6 +65,9 @@ public class InstructionParser {
 		parsers.put("clac", new ClacParser());		
 		parsers.put("stor", new StorParser());
 		parsers.put("beqz", new BeqzParser());
+		
+		//unconditional branch 
+		parsers.put("br", new BrParser());
 
 	}
 	
@@ -410,6 +413,28 @@ public class InstructionParser {
 			
 			String branchAddress =shortStringToHexString(s, lineNumber);
 			return ("50" + branchAddress);
+		}
+	}
+	
+	/**
+	 * class BrParser parses br instruction.
+	 * 
+	 * br instructions have the format "br [label/address]"
+	 * Op code and ALUopt for add is 60.
+	 */
+	static private class BrParser implements Parser {
+		public String parse(String s, HashMap<String, Label>  st, int lineNumber) 
+				throws AssemblerException {
+			if (Character.isLetter(s.charAt(0))) {
+				Label l = st.get(s);
+				if (l == null) 
+					throw new AssemblerException("label " + s 
+							+ " not found for br - Line Number: " + lineNumber);
+				s = Integer.toString(l.getAddress());				
+			}
+			
+			String branchAddress =shortStringToHexString(s, lineNumber);
+			return ("60" + branchAddress);
 		}
 	}
 
