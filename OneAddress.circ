@@ -350,34 +350,51 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <a name="clabel" val=""/>
     <a name="clabelup" val="east"/>
     <a name="clabelfont" val="SansSerif plain 12"/>
-    <wire from="(370,300)" to="(370,560)"/>
-    <wire from="(540,490)" to="(850,490)"/>
-    <wire from="(460,410)" to="(520,410)"/>
+    <wire from="(730,530)" to="(850,530)"/>
+    <wire from="(550,440)" to="(600,440)"/>
+    <wire from="(710,430)" to="(710,570)"/>
+    <wire from="(790,420)" to="(850,420)"/>
+    <wire from="(370,300)" to="(370,440)"/>
     <wire from="(200,310)" to="(250,310)"/>
-    <wire from="(560,390)" to="(560,460)"/>
-    <wire from="(460,370)" to="(580,370)"/>
-    <wire from="(560,390)" to="(600,390)"/>
-    <wire from="(500,420)" to="(500,570)"/>
-    <wire from="(540,400)" to="(540,490)"/>
+    <wire from="(790,390)" to="(790,420)"/>
+    <wire from="(620,380)" to="(850,380)"/>
     <wire from="(270,290)" to="(830,290)"/>
-    <wire from="(560,460)" to="(850,460)"/>
+    <wire from="(750,490)" to="(850,490)"/>
     <wire from="(270,300)" to="(370,300)"/>
-    <wire from="(460,390)" to="(560,390)"/>
-    <wire from="(460,420)" to="(500,420)"/>
-    <wire from="(580,370)" to="(600,370)"/>
-    <wire from="(500,570)" to="(850,570)"/>
-    <wire from="(440,520)" to="(440,560)"/>
-    <wire from="(520,410)" to="(520,530)"/>
-    <wire from="(650,380)" to="(850,380)"/>
-    <wire from="(460,380)" to="(600,380)"/>
-    <wire from="(460,400)" to="(540,400)"/>
-    <wire from="(580,370)" to="(580,420)"/>
-    <wire from="(580,420)" to="(850,420)"/>
-    <wire from="(520,530)" to="(850,530)"/>
-    <wire from="(370,560)" to="(440,560)"/>
-    <comp lib="2" loc="(440,520)" name="Decoder">
-      <a name="select" val="4"/>
-      <a name="enable" val="false"/>
+    <wire from="(750,410)" to="(750,490)"/>
+    <wire from="(620,420)" to="(730,420)"/>
+    <wire from="(370,440)" to="(410,440)"/>
+    <wire from="(620,390)" to="(790,390)"/>
+    <wire from="(620,400)" to="(770,400)"/>
+    <wire from="(730,420)" to="(730,530)"/>
+    <wire from="(620,430)" to="(710,430)"/>
+    <wire from="(770,400)" to="(770,460)"/>
+    <wire from="(620,410)" to="(750,410)"/>
+    <wire from="(770,460)" to="(850,460)"/>
+    <wire from="(710,570)" to="(850,570)"/>
+    <comp lib="0" loc="(850,530)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="tristate" val="false"/>
+      <a name="label" val="Branch"/>
+    </comp>
+    <comp lib="0" loc="(200,310)" name="Pin">
+      <a name="width" val="8"/>
+      <a name="tristate" val="false"/>
+      <a name="label" val="Instruction"/>
+    </comp>
+    <comp lib="0" loc="(850,490)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="tristate" val="false"/>
+      <a name="label" val="MemWr"/>
+    </comp>
+    <comp lib="4" loc="(550,440)" name="ROM">
+      <a name="addrWidth" val="4"/>
+      <a name="dataWidth" val="6"/>
+      <a name="contents">addr/data: 4 6
+0
+</a>
     </comp>
     <comp lib="0" loc="(850,460)" name="Pin">
       <a name="facing" val="west"/>
@@ -392,19 +409,12 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="tristate" val="false"/>
       <a name="label" val="ALUOp"/>
     </comp>
-    <comp lib="0" loc="(850,530)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="tristate" val="false"/>
-      <a name="label" val="Branch"/>
-    </comp>
     <comp lib="0" loc="(850,420)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
       <a name="tristate" val="false"/>
       <a name="label" val="ALUSrc"/>
     </comp>
-    <comp lib="1" loc="(650,380)" name="OR Gate"/>
     <comp lib="0" loc="(850,570)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
@@ -417,16 +427,9 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="tristate" val="false"/>
       <a name="label" val="WriteAc"/>
     </comp>
-    <comp lib="0" loc="(200,310)" name="Pin">
-      <a name="width" val="8"/>
-      <a name="tristate" val="false"/>
-      <a name="label" val="Instruction"/>
-    </comp>
-    <comp lib="0" loc="(850,490)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="tristate" val="false"/>
-      <a name="label" val="MemWr"/>
+    <comp lib="0" loc="(600,440)" name="Splitter">
+      <a name="fanout" val="6"/>
+      <a name="incoming" val="6"/>
     </comp>
     <comp lib="0" loc="(250,310)" name="Splitter">
       <a name="incoming" val="8"/>
